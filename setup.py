@@ -1,3 +1,5 @@
+# setup.py file is the script used to build and distribute this function as Python package
+
 from setuptools import find_packages,setup
 from typing import List
 

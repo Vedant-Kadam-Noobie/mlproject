@@ -1,4 +1,8 @@
 pandas
 numpy
 seaborn
--e .
+matplotlib
+scikit-learn
+catboost
+xgboost
+# -e .   # The -e . entry in requirements.txt is used to install the current package in editable mode
