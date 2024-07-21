@@ -5,18 +5,22 @@ from src.logger import logging
 import pandas as pd
 
 from sklearn.model_selection import train_test_split
+# dataclass decorator, which simplifies the creation of classes used primarily for storing data.
 from dataclasses import dataclass
 
 @dataclass
+# DataIngestionConfig: A data class for configuration, holding paths for data files.
 class DataIngestionConfig:
     train_data_path: str=os.path.join('artifacts',"train.csv")
     test_data_path: str=os.path.join('artifacts',"test.csv")
     raw_data_path: str=os.path.join('artifacts',"data.csv")
 
+# DataIngestion: A class that performs data ingestion tasks.
 class DataIngestion:
     def __init__(self):
         self.ingestion_config=DataIngestionConfig()
-
+        
+# initiate_data_ingestion: A method in DataIngestion that reads a CSV file, splits it into training and testing sets, and saves them.
     def initiate_data_ingestion(self):
         logging.info("Entered the data ingestion method or component")
         try:
@@ -43,7 +47,7 @@ class DataIngestion:
             )
         except Exception as e:
             raise CustomException(e,sys)
-        
+# Main Execution Block: Runs the data ingestion process when the script is executed directly. 
 if __name__=="__main__":
     obj=DataIngestion()
     obj.initiate_data_ingestion()
