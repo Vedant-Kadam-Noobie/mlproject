@@ -23,7 +23,8 @@ def save_object(file_path, obj):
 
     except Exception as e:
         raise CustomException(e, sys)
-    
+
+# Function evaluates various ML models on training & testing data, then returns thier performance
 def evaluate_models(X_train, y_train,X_test,y_test,models):
     try:
         report = {}
