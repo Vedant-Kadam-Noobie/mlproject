@@ -8,6 +8,9 @@ from sklearn.model_selection import train_test_split
 # dataclass decorator, which simplifies the creation of classes used primarily for storing data.
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
 @dataclass
 # DataIngestionConfig: A data class for configuration, holding paths for data files.
 class DataIngestionConfig:
@@ -47,9 +50,11 @@ class DataIngestion:
             )
         except Exception as e:
             raise CustomException(e,sys)
-# Main Execution Block: Runs the data ingestion process when the script is executed directly. 
+
+# Main Execution Block: Runs the data ingestion process and initiate data transformation when the script is executed directly. 
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data,test_data=obj.initiate_data_ingestion()
 
-
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
