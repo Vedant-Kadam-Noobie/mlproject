@@ -6,4 +6,5 @@ scikit-learn
 catboost
 xgboost
 dill
+Flask
 # -e .   # The -e . entry in requirements.txt is used to install the current package in editable mode

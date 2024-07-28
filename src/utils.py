@@ -25,15 +25,17 @@ def save_object(file_path, obj):
     except Exception as e:
         raise CustomException(e, sys)
 
-# Function evaluates various ML models on training & testing data, then returns thier performance
+# Train and evaluate multiple machine learning models, applying hyperparameter tuning, and return their performance scores
 def evaluate_models(X_train, y_train,X_test,y_test,models,param):
     try:
         report = {}
 
+        # Loop through each model
         for i in range(len(list(models))):
             model = list(models.values())[i]
             para=param[list(models.keys())[i]]
             
+            # Perform hyperparameter tuning & Cross-validation using GridSearchCV
             gs = GridSearchCV(model,para,cv=3)
             gs.fit(X_train,y_train)
 
@@ -53,6 +55,14 @@ def evaluate_models(X_train, y_train,X_test,y_test,models,param):
             report[list(models.keys())[i]] = test_model_score
 
         return report
+
+    except Exception as e:
+        raise CustomException(e, sys)
+
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return dill.load(file_obj)
 
     except Exception as e:
         raise CustomException(e, sys)
